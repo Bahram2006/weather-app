@@ -1,103 +1,106 @@
-import { useEffect, useMemo, useState } from 'react'
-import SearchBar from './components/SearchBar.jsx'
-import WeatherCard from './components/WeatherCard.jsx'
+import { useEffect, useMemo, useState } from "react";
+import SearchBar from "./components/SearchBar.jsx";
+import WeatherCard from "./components/WeatherCard.jsx";
+import Spinner from "./components/Spinner";
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('theme')
-    return saved === 'dark' ? 'dark' : 'light'
-  })
-  const [city, setCity] = useState('')
-  const [weather, setWeather] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+    const saved = localStorage.getItem("theme");
+    return saved === "dark" ? "dark" : "light";
+  });
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const apiKey = import.meta.env.VITE_OWM_API_KEY
+  const apiKey = import.meta.env.VITE_OWM_API_KEY;
 
   useEffect(() => {
-    const root = document.documentElement
-    if (theme === 'dark') root.classList.add('dark')
-    else root.classList.remove('dark')
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    const root = document.documentElement;
+    if (theme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-  const canFetch = useMemo(() => Boolean(apiKey && apiKey.trim()), [apiKey])
+  const canFetch = useMemo(() => Boolean(apiKey && apiKey.trim()), [apiKey]);
 
   async function fetchByCity(nextCity) {
-    const q = (nextCity ?? '').trim()
+    const q = (nextCity ?? "").trim();
     if (!q) {
-      setError('Please enter a city name.')
-      setWeather(null)
-      return
+      setError("Please enter a city name.");
+      setWeather(null);
+      return;
     }
     if (!canFetch) {
-      setError('Missing API key. Add VITE_OWM_API_KEY to your .env file.')
-      setWeather(null)
-      return
+      setError("Missing API key. Add VITE_OWM_API_KEY to your .env file.");
+      setWeather(null);
+      return;
     }
 
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
     try {
-      const url = new URL('https://api.openweathermap.org/data/2.5/weather')
-      url.searchParams.set('q', q)
-      url.searchParams.set('appid', apiKey)
-      url.searchParams.set('units', 'metric')
+      const url = new URL("https://api.openweathermap.org/data/2.5/weather");
+      url.searchParams.set("q", q);
+      url.searchParams.set("appid", apiKey);
+      url.searchParams.set("units", "metric");
 
-      const res = await fetch(url)
-      const data = await res.json()
+      const res = await fetch(url);
+      const data = await res.json();
 
       if (!res.ok) {
         const msg =
-          (data && (data.message || data.error)) || 'City not found. Please try again.'
-        setError(msg)
-        setWeather(null)
-        return
+          (data && (data.message || data.error)) ||
+          "City not found. Please try again.";
+        setError(msg);
+        setWeather(null);
+        return;
       }
 
-      setWeather(data)
+      setWeather(data);
     } catch {
-      setError('Something went wrong. Please try again.')
-      setWeather(null)
+      setError("Something went wrong. Please try again.");
+      setWeather(null);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   async function fetchByCoords(lat, lon) {
     if (!canFetch) {
-      setError('Missing API key. Add VITE_OWM_API_KEY to your .env file.')
-      setWeather(null)
-      return
+      setError("Missing API key. Add VITE_OWM_API_KEY to your .env file.");
+      setWeather(null);
+      return;
     }
 
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
     try {
-      const url = new URL('https://api.openweathermap.org/data/2.5/weather')
-      url.searchParams.set('lat', String(lat))
-      url.searchParams.set('lon', String(lon))
-      url.searchParams.set('appid', apiKey)
-      url.searchParams.set('units', 'metric')
+      const url = new URL("https://api.openweathermap.org/data/2.5/weather");
+      url.searchParams.set("lat", String(lat));
+      url.searchParams.set("lon", String(lon));
+      url.searchParams.set("appid", apiKey);
+      url.searchParams.set("units", "metric");
 
-      const res = await fetch(url)
-      const data = await res.json()
+      const res = await fetch(url);
+      const data = await res.json();
 
       if (!res.ok) {
         const msg =
-          (data && (data.message || data.error)) || 'Unable to fetch location weather.'
-        setError(msg)
-        setWeather(null)
-        return
+          (data && (data.message || data.error)) ||
+          "Unable to fetch location weather.";
+        setError(msg);
+        setWeather(null);
+        return;
       }
 
-      setWeather(data)
-      if (data?.name) setCity(data.name)
+      setWeather(data);
+      if (data?.name) setCity(data.name);
     } catch {
-      setError('Something went wrong. Please try again.')
-      setWeather(null)
+      setError("Something went wrong. Please try again.");
+      setWeather(null);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -114,11 +117,11 @@ function App() {
         </div>
         <button
           type="button"
-          onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+          onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
           className="rounded-xl border border-white/30 bg-white/60 px-3 py-2 text-sm font-medium text-slate-800 shadow-sm backdrop-blur hover:bg-white/70 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15"
           aria-label="Toggle theme"
         >
-          {theme === 'dark' ? 'Light' : 'Dark'}
+          {theme === "dark" ? "Light" : "Dark"}
         </button>
       </header>
 
@@ -130,20 +133,22 @@ function App() {
             onSearch={() => fetchByCity(city)}
             onUseMyLocation={() => {
               if (!navigator.geolocation) {
-                setError('Geolocation is not supported by your browser.')
-                return
+                setError("Geolocation is not supported by your browser.");
+                return;
               }
-              setLoading(true)
-              setError('')
+              setLoading(true);
+              setError("");
               navigator.geolocation.getCurrentPosition(
                 (pos) => {
-                  fetchByCoords(pos.coords.latitude, pos.coords.longitude)
+                  fetchByCoords(pos.coords.latitude, pos.coords.longitude);
                 },
                 () => {
-                  setLoading(false)
-                  setError('Unable to access location. Please allow permission and try again.')
+                  setLoading(false);
+                  setError(
+                    "Unable to access location. Please allow permission and try again.",
+                  );
                 },
-              )
+              );
             }}
             loading={loading}
           />
@@ -155,7 +160,7 @@ function App() {
           ) : null}
 
           <div className="mt-5">
-            <WeatherCard weather={weather} loading={loading} />
+            {loading ? <Spinner /> : <WeatherCard weather={weather} />}
           </div>
         </div>
 
@@ -164,7 +169,7 @@ function App() {
         </p>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
