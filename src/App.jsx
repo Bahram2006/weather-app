@@ -116,6 +116,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-100 via-indigo-100 to-rose-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+      <div className="pointer-events-none absolute insite-0 overflow-hidden">
+        <div className="cloud top-10 text-6xl">☁️</div>
+        <div className="cloud top-40 text-5xl" style={{ animationDuration: "80s" }}>☁️</div>
+        <div className="cloud top-72 text-7xl" style={{ animationDuration: "100s" }}>☁️</div>
+      </div>
       <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-4 pt-8">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
