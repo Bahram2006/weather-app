@@ -45,7 +45,14 @@ export default function SearchBar({
             placeholder="e.g., London"
             autoComplete="off"
             className="w-full rounded-xl border border-white/40 bg-white/80 px-4 py-3 text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-indigo-300 focus:ring-4 focus:ring-indigo-200/60 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
+            onKeyDown={(e) =>{
+              if (e.key === "Enter") {
+                onSearch?.()
+              }
+            }}
           />
+
+          
 
           {value && (
             <button

@@ -22,6 +22,15 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const savedCity = localStorage.getItem("lastCity");
+
+    if (savedCity) {
+      setCity(savedCity);
+      fetchByCity(savedCity);
+    }
+  }, []);
+
   const canFetch = useMemo(() => Boolean(apiKey && apiKey.trim()), [apiKey]);
 
   async function fetchByCity(nextCity) {
