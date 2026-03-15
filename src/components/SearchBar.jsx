@@ -40,6 +40,7 @@ export default function SearchBar({
 
           <input
             id={id}
+            autoFocus
             value={value}
             onChange={(e) => onChange?.(e.target.value)}
             placeholder="e.g., London"
