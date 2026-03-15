@@ -58,6 +58,7 @@ function App() {
       }
 
       setWeather(data);
+      localStorage.setItem("lastCity", q);
     } catch {
       setError("Something went wrong. Please try again.");
       setWeather(null);
