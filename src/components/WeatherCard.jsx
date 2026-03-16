@@ -6,7 +6,7 @@ function formatTemp(value) {
 export default function WeatherCard({ weather, loading = false }) {
   if (loading && !weather) {
     return (
-      <div className="rounded-2xl border border-white/30 bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 transition hover:scale-105">
+      <div className="rounded-2xl border border-white/30 bg-white/60 p-8 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 transition hover:scale-105">
         <div className="h-6 w-40 animate-pulse rounded bg-slate-200/70 dark:bg-white/10" />
         <div className="mt-4 h-12 w-28 animate-pulse rounded bg-slate-200/70 dark:bg-white/10" />
         <div className="mt-4 grid grid-cols-2 gap-3">
