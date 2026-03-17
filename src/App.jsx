@@ -177,7 +177,7 @@ function App() {
             }}
             loading={loading}
           />
-          <div className="my-5 border-t border-slate-300 dark:border-slate-600"></div>
+          <div className="my-8 border-t border-slate-300 dark:border-slate-600"></div>
 
           {error ? (
             <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-400/30 dark:bg-rose-500/10 dark:text-rose-100">
