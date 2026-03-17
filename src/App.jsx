@@ -133,7 +133,7 @@ function App() {
       </div>
       <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-4 pt-8">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
             ⛅ WeatherNow
           </h1>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
