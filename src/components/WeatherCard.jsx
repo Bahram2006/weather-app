@@ -65,7 +65,7 @@ export default function WeatherCard({ weather, loading = false }) {
       </div>
 
       <div className="mt-4 flex items-end justify-between gap-4">
-        <div className="text-5xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+        <div className="text-6xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
           {formatTemp(temp)}
         </div>
         <div className="rounded-xl bg-white/60 px-3 py-2 text-xs font-medium text-slate-700 shadow-sm dark:bg-white/10 dark:text-slate-200">
