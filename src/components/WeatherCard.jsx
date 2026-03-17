@@ -58,7 +58,7 @@ export default function WeatherCard({ weather, loading = false }) {
             width="72"
             height="72"
             alt={description ? `${description} icon` : 'Weather icon'}
-            className="-mt-1 h-16 w-16"
+            className="-mt-1 h-20 w-20"
             loading="lazy"
           />
         ) : null}
