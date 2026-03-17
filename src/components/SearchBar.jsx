@@ -46,7 +46,7 @@ export default function SearchBar({
             placeholder="Search city (e.g., London)"
             autoComplete="off"
             focus:ring-2 focus:ring-indigo-400
-            className="w-full rounded-2xl border border-white/40 bg-white/80 px-4 py-3 text-slate-900 shadow-md outline-none placeholder:text-slate-400 focus:border-indigo-300 focus:ring-4 focus:ring-indigo-200/60 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
+            className="w-full rounded-2xl border border-white/40 bg-white/80 px-4 py-3 text-slate-900 shadow-md outline-none placeholder:text-slate-400 focus:border-indigo-300 focus:ring-6 focus:ring-indigo-200/60 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
             onKeyDown={(e) =>{
               if (e.key === "Enter") {
                 onSearch?.()
