@@ -1,4 +1,4 @@
-import { useId } from "react"
+import { useId } from "react";
 
 export default function SearchBar({
   value,
@@ -6,29 +6,26 @@ export default function SearchBar({
   onSearch,
   onUseMyLocation,
   loading = false,
-  error = ""
+  error = "",
 }) {
-
-  const id = useId()
+  const id = useId();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!value.trim()) return
-    onSearch?.()
-  }
+    e.preventDefault();
+    if (!value.trim()) return;
+    onSearch?.();
+  };
 
   const handleClear = () => {
-    onChange?.("")
-  }
+    onChange?.("");
+  };
 
   return (
     <form
       className="flex flex-col gap-3 sm:flex-row sm:items-end"
       onSubmit={handleSubmit}
     >
-
       <div className="flex-1">
-
         <label
           htmlFor={id}
           className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200"
@@ -37,7 +34,6 @@ export default function SearchBar({
         </label>
 
         <div className="relative">
-
           <input
             id={id}
             autoFocus
@@ -45,16 +41,15 @@ export default function SearchBar({
             onChange={(e) => onChange?.(e.target.value)}
             placeholder="Search city (e.g., London)"
             autoComplete="off"
-            focus:ring-2 focus:ring-indigo-400
+            focus:ring-2
+            focus:ring-indigo-400
             className="w-full rounded-2xl border border-white/40 bg-white/80 px-4 py-3 text-slate-900 shadow-md outline-none placeholder:text-slate-400 focus:border-indigo-300 focus:ring-6 focus:ring-indigo-200/60 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
-            onKeyDown={(e) =>{
+            onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSearch?.()
+                onSearch?.();
               }
             }}
           />
-
-          
 
           {value && (
             <button
@@ -65,26 +60,18 @@ export default function SearchBar({
               ✕
             </button>
           )}
-
         </div>
 
-        {error && (
-          <p className="mt-1 text-sm text-red-500">
-            {error}
-          </p>
-        )}
-
+        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
 
-
       <div className="flex gap-2">
-
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex flex-1 items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 hover:shadow-xl transition disabled:cursor-not-allowed disabled:opacity-60 transition hover:scale-105"
+          className="inline-flex flex-1 items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 hover:shadow-xl transition disabled:cursor-not-allowed disabled:opacity-60 hover:scale-105"
         >
-          {loading ? "Searching..." : "Search"}
+          {loading ? "⏳ Searching…" : "🔍 Search"}
         </button>
 
         <button
@@ -95,9 +82,7 @@ export default function SearchBar({
         >
           📍 My location
         </button>
-
       </div>
-
     </form>
-  )
+  );
 }
