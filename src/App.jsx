@@ -115,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-indigo-100 to-rose-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="pointer-events-none absolute insite-0 overflow-hidden">
         <div className="cloud top-10 text-6xl">☁️</div>
         <div
