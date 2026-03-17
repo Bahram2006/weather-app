@@ -190,7 +190,7 @@ function App() {
           </div>
         </div>
 
-        <p className="mt-5 text-center text-xs text-slate-600 dark:text-slate-400">
+        <p className="mt-5 text-center text-xs text-slate-500 dark:text-slate-400">
           ☁️ WeatherNow • Built with React
         </p>
       </main>
