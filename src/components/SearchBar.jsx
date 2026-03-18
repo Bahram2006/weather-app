@@ -71,7 +71,7 @@ export default function SearchBar({
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex flex-1 items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 hover:shadow-xl transition disabled:cursor-not-allowed disabled:opacity-60 hover:scale-105 active:scale-95"
+          className="inline-flex flex-1 items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 hover:scale-105 active:scale-95"
         >
           {loading ? "⏳ Searching…" : "🔍 Search"}
         </button>
