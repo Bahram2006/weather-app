@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar.jsx";
 import WeatherCard from "./components/WeatherCard.jsx";
 import Spinner from "./components/Spinner";
 
-function getBackground() {
+function getBackground(weatherType) {
   switch (weatherType) {
     case "Clear":
       return "from-yellow-200 via-orange-200 to-yellow-300";
@@ -148,7 +148,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br ${getBackground()} dark:from-slate-950 dark:via-slate-900 dark:to-slate-950`}
+      className={`min-h-screen bg-gradient-to-br ${getBackground(weatherType)} dark:from-slate-950 dark:via-slate-900 dark:to-slate-950`}
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="cloud top-10 text-6xl">☁️</div>
