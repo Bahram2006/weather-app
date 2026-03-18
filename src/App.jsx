@@ -3,6 +3,23 @@ import SearchBar from "./components/SearchBar.jsx";
 import WeatherCard from "./components/WeatherCard.jsx";
 import Spinner from "./components/Spinner";
 
+function getBackground() {
+  switch (weatherType) {
+    case "Clear":
+      return "from-yellow-200 via-orange-200 to-yellow-300";
+    case "Clouds":
+      return "from-gray-300 via-gray-400 to-gray-500";
+    case "Rain":
+      return "from-blue-400 via-indigo-500 to-gray-700";
+    case "Snow":
+      return "from-sky-100 via-white to-sky-200";
+    case "Thunderstorm":
+      return "from-gray-700 via-gray-900 to-black";
+    default:
+      return "from-indigo-200 via-purple-200 to-pink-200";
+  }
+}
+
 function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem("theme");
@@ -15,6 +32,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [lastCity, setLastCity] = useState("");
+  const weatherType = weather?.weather?.[0]?.main;
 
   const apiKey = import.meta.env.VITE_OWM_API_KEY;
 
@@ -129,7 +147,9 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div
+      className={`min-h-screen bg-gradient-to-br ${getBackground()} dark:from-slate-950 dark:via-slate-900 dark:to-slate-950`}
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="cloud top-10 text-6xl">☁️</div>
         <div
