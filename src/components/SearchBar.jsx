@@ -33,6 +33,8 @@ export default function SearchBar({
           City
         </label>
 
+        <span className="absolute left-3 top-10 text-slate-400">🔍</span>
+
         <div className="relative">
           <input
             id={id}
