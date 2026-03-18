@@ -1,6 +1,6 @@
 function formatTemp(value) {
-  if (typeof value !== 'number' || Number.isNaN(value)) return '—'
-  return `${Math.round(value)}°C`
+  if (typeof value !== "number" || Number.isNaN(value)) return "—";
+  return `${Math.round(value)}°C`;
 }
 
 export default function WeatherCard({ weather, loading = false }) {
@@ -14,7 +14,7 @@ export default function WeatherCard({ weather, loading = false }) {
           <div className="h-10 animate-pulse rounded bg-slate-200/70 dark:bg-white/10" />
         </div>
       </div>
-    )
+    );
   }
 
   if (!weather) {
@@ -22,18 +22,20 @@ export default function WeatherCard({ weather, loading = false }) {
       <div className="rounded-2xl border border-dashed border-white/40 bg-white/40 p-8 text-center text-sm text-slate-700 dark:border-white/15 dark:bg-white/5 dark:text-slate-200">
         Search for a city to see the current weather.
       </div>
-    )
+    );
   }
 
-  const cityName = weather?.name ?? '—'
-  const country = weather?.sys?.country
-  const temp = weather?.main?.temp
-  const humidity = weather?.main?.humidity
-  const wind = weather?.wind?.speed
-  const condition = weather?.weather?.[0]?.main ?? '—'
-  const description = weather?.weather?.[0]?.description ?? ''
-  const icon = weather?.weather?.[0]?.icon
-  const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null
+  const cityName = weather?.name ?? "—";
+  const country = weather?.sys?.country;
+  const temp = weather?.main?.temp;
+  const humidity = weather?.main?.humidity;
+  const wind = weather?.wind?.speed;
+  const condition = weather?.weather?.[0]?.main ?? "—";
+  const description = weather?.weather?.[0]?.description ?? "";
+  const icon = weather?.weather?.[0]?.icon;
+  const iconUrl = icon
+    ? `https://openweathermap.org/img/wn/${icon}@2x.png`
+    : null;
 
   return (
     <div className="rounded-2xl border border-white/30 bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10">
@@ -57,7 +59,7 @@ export default function WeatherCard({ weather, loading = false }) {
             src={iconUrl}
             width="72"
             height="72"
-            alt={description ? `${description} icon` : 'Weather icon'}
+            alt={description ? `${description} icon` : "Weather icon"}
             className="-mt-1 h-20 w-20"
             loading="lazy"
           />
@@ -65,7 +67,15 @@ export default function WeatherCard({ weather, loading = false }) {
       </div>
 
       <div className="mt-4 flex items-end justify-between gap-4">
-        <div className="text-6xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+        <div
+          className={`text-5xl font-semibold tracking-tight ${
+            temp <= 10
+              ? "text-blue-500"
+              : temp <= 25
+                ? "text-green-500"
+                : "text-red-500"
+          }`}
+        >
           {formatTemp(temp)}
         </div>
         <div className="rounded-xl bg-white/60 px-3 py-2 text-xs font-medium text-slate-700 shadow-sm dark:bg-white/10 dark:text-slate-200">
@@ -79,7 +89,7 @@ export default function WeatherCard({ weather, loading = false }) {
             Humidity
           </div>
           <div className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">
-            {typeof humidity === 'number' ? `${humidity}%` : '—'}
+            {typeof humidity === "number" ? `${humidity}%` : "—"}
           </div>
         </div>
         <div className="rounded-xl border border-white/30 bg-white/50 px-4 py-3 dark:border-white/10 dark:bg-white/5">
@@ -87,11 +97,10 @@ export default function WeatherCard({ weather, loading = false }) {
             Wind
           </div>
           <div className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">
-            {typeof wind === 'number' ? `${wind} m/s` : '—'}
+            {typeof wind === "number" ? `${wind} m/s` : "—"}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
