@@ -80,7 +80,7 @@ export default function SearchBar({
           disabled={loading}
           className="inline-flex flex-1 items-center justify-center rounded-xl border border-white/30 bg-white/60 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur hover:bg-white/70 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
         >
-          📍 My location
+          📍 Use My Location
         </button>
       </div>
     </form>
