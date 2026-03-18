@@ -9,8 +9,8 @@ function App() {
     return saved === "dark" ? "dark" : "light";
   });
   const [city, setCity] = useState(() => {
-    return localStorage.getItem("city") || ""
-  })
+    return localStorage.getItem("city") || "";
+  });
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,14 +35,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("city", city)
+    localStorage.setItem("city", city);
   }, [city]);
 
   const canFetch = useMemo(() => Boolean(apiKey && apiKey.trim()), [apiKey]);
 
   async function fetchByCity(nextCity) {
-    localStorage.setItem("city", q);
     const q = (nextCity ?? "").trim();
+    localStorage.setItem("city", q);
     if (!q) {
       setError("Please enter a city name.");
       setWeather(null);
@@ -117,7 +117,8 @@ function App() {
       if (data?.name) {
         setCity(data.name);
         setLastCity(data.name);
-        localStorage.setItem("city", data.name)
+        localStorage.setItem("city", data.name);
+        localStorage.setItem("lastCity", data.name);
       }
     } catch {
       setError("Something went wrong. Please try again.");
@@ -129,7 +130,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      <div className="pointer-events-none absolute insite-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="cloud top-10 text-6xl">☁️</div>
         <div
           className="cloud top-40 text-5xl"
@@ -175,13 +176,6 @@ function App() {
                 return;
               }
               setLoading(true);
-              {
-                lastCity && (
-                  <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
-                    🕒 Last search: {lastCity}
-                  </p>
-                );
-              }
               setError("");
               navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -197,14 +191,17 @@ function App() {
             }}
             loading={loading}
           />
+          {lastCity && (
+            <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+              🕒 Last search: {lastCity}
+            </p>
+          )}
           <div className="my-8 border-t border-slate-300 dark:border-slate-600"></div>
-
           {error ? (
             <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 dark:border-rose-400/30 dark:bg-rose-500/10 dark:text-rose-100">
               {error}
             </div>
           ) : null}
-
           <div className="mt-5">
             {loading ? <Spinner /> : <WeatherCard weather={weather} />}
           </div>
