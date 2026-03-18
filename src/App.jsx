@@ -151,7 +151,7 @@ function App() {
       </header>
 
       <main className="mx-auto w-full max-w-3xl px-4 pb-14 pt-8">
-        <div className="rounded-2xl border border-white/30 bg-white/40 p-4 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-white/10">
+        <div className="rounded-3xl border border-white/30 bg-white/40 p-4 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-white/10">
           <SearchBar
             value={city}
             onChange={setCity}
