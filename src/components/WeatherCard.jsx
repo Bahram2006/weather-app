@@ -102,5 +102,6 @@ export default function WeatherCard({ weather, loading = false }) {
         </div>
       </div>
     </div>
+
   );
 }

@@ -12,6 +12,7 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [lastCity, setLastCity] = useState("");
 
   const apiKey = import.meta.env.VITE_OWM_API_KEY;
 
@@ -67,6 +68,7 @@ function App() {
       }
 
       setWeather(data);
+      setLastCity(q);
       localStorage.setItem("lastCity", q);
     } catch {
       setError("Something went wrong. Please try again.");
@@ -105,7 +107,10 @@ function App() {
       }
 
       setWeather(data);
-      if (data?.name) setCity(data.name);
+      if (data?.name) {
+        setCity(data.name);
+        setLastCity(data.name);
+      }
     } catch {
       setError("Something went wrong. Please try again.");
       setWeather(null);
@@ -162,6 +167,13 @@ function App() {
                 return;
               }
               setLoading(true);
+              {
+                lastCity && (
+                  <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+                    🕒 Last search: {lastCity}
+                  </p>
+                );
+              }
               setError("");
               navigator.geolocation.getCurrentPosition(
                 (pos) => {
