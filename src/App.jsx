@@ -8,7 +8,9 @@ function App() {
     const saved = localStorage.getItem("theme");
     return saved === "dark" ? "dark" : "light";
   });
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(() => {
+    return localStorage.getItem("city") || ""
+  })
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -32,9 +34,14 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("city", city)
+  }, [city]);
+
   const canFetch = useMemo(() => Boolean(apiKey && apiKey.trim()), [apiKey]);
 
   async function fetchByCity(nextCity) {
+    localStorage.setItem("city", q);
     const q = (nextCity ?? "").trim();
     if (!q) {
       setError("Please enter a city name.");
@@ -110,6 +117,7 @@ function App() {
       if (data?.name) {
         setCity(data.name);
         setLastCity(data.name);
+        localStorage.setItem("city", data.name)
       }
     } catch {
       setError("Something went wrong. Please try again.");
