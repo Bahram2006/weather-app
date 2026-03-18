@@ -143,7 +143,7 @@ function App() {
         <button
           type="button"
           onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
-          className="rounded-xl border border-white/30 bg-white/60 px-3 py-2 text-sm font-medium text-slate-800 shadow-sm backdrop-blur hover:bg-white/70 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15"
+          className="rounded-xl border border-white/30 bg-white/60 px-3 py-2 text-sm font-medium text-slate-800 shadow-sm backdrop-blur hover:bg-white/70 dark:border-white/10 dark:bg-indigo-500/20 dark:text-slate-100 dark:hover:bg-indigo-500/30"
           aria-label="Toggle theme"
         >
           {theme === "dark" ? "Light" : "Dark"}
